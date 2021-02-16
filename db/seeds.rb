@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Picture.delete_all
+
+Picture.create(title: "Skyline",
+    description: "NYC Skyline",
+    date: Date.new(2020, 12, 2)).image.attach(io: File.open('app/assets/images/seed_images/skyline.jpeg'), filename: 'skyline.jpeg')
