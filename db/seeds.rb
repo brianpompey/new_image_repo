@@ -8,6 +8,10 @@
 
 Picture.delete_all
 
-Picture.create(title: "Skyline",
+Picture.create!(title: "Skyline",
     description: "NYC Skyline",
     date: Date.new(2020, 12, 2)).image.attach(io: File.open('app/assets/images/seed_images/skyline.jpeg'), filename: 'skyline.jpeg')
+
+Database.new
+
+User.new
