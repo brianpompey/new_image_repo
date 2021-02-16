@@ -1,6 +1,6 @@
 class PicturesController < ApplicationController
   def index
-    @pictures = Picture.all
+    @pictures = Picture.all.with_attached_image
   end
 
   def show
@@ -13,6 +13,8 @@ class PicturesController < ApplicationController
   end
 
   def create
+    @picture = Picture.create(picture_params)
+   # if @picture.valid?
   end
 
   def destroy
@@ -24,6 +26,6 @@ class PicturesController < ApplicationController
   private
 
   def picture_params
-    params.require(:picture).permit(:title, :description, :date, :image)
+    params.require(:picture).permit(:title, :user_id, :description, :date, :image)
   end
 end
