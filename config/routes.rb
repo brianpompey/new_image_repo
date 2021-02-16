@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'pictures/index'
+  root 'pictures#index'
   get 'pictures/show'
   get 'pictures/create'
   get 'pictures/destroy'
