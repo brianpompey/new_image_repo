@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  root 'database#index'
-  get 'database/destroy'
-  get 'pictures/index'
+  root 'pictures/index'
   get 'pictures/show'
   get 'pictures/create'
   get 'pictures/destroy'
