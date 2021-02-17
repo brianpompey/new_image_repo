@@ -2,19 +2,25 @@
 <html>
 <head>
 <style>
-    div.gallery {
-        margin: 5px;
-        border: 1px solid #ccc;
-        float: left;
-        width: 180px;
-    }
-    div.gallery:hover {
-  border: 1px solid #777;
+* {
+  box-sizing: border-box;
 }
 
-div.gallery img {
-  width: 100%;
-  height: auto;
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+img {
+  border: 5px solid #555;
 }
 
 </style>
@@ -26,9 +32,9 @@ div.gallery img {
 <br><br>
 
 <div>
-  <ul id="grid">
+  <ul class="row">
     <% @pictures.each do |img| %>
-        <div class="gallery">
+        <div class="column">
             <li><img src="<%= (url_for(img.image)) %>"></li>
         </div>
     <% end %>
