@@ -56,9 +56,7 @@
           
 .overlayFade { 
     height: 250px; 
-    width: 250px; 
-    top: 0; 
-    left: 75px; 
+    width: 250px;  
     background-color: #9bcd9b; 
 } 
 
@@ -73,10 +71,10 @@
 <div>
   <ul class="row">
     <% @pictures.each do |img| %>
-        <div class="column">
+        <li class="column">
             <img src="<%= (url_for(img.image)) %>">
             <div class="overlay overlayFade"></div> 
-        </div>
+        </li>
     <% end %>
   </ul>
 </div>
