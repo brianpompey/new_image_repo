@@ -71,10 +71,10 @@
 <div>
   <ul class="row">
     <% @pictures.each do |img| %>
-        <li class="column">
+        <div class="column">
             <img src="<%= (url_for(img.image)) %>">
             <div class="overlay overlayFade"></div> 
-        </li>
+        </div>
     <% end %>
   </ul>
 </div>
