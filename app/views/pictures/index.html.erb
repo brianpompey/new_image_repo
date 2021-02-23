@@ -2,63 +2,85 @@
 <html>
 <head>
 <style>
-* {
-  box-sizing: border-box;
+
+body {
+  padding: 20px;
+  font-family: sans-serif;
+  background: #f2f2f2;
+}
+img {
+  width: 100%; /* need to overwrite inline dimensions */
+  height: auto;
+}
+h1 {
+  margin-bottom: .5em;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 1em;
 }
 
-.row {
+
+/* hover styles */
+.image-pic {
+  position: relative;
+}
+
+.image-image {
+  line-height: 0;
+  overflow: hidden;
+}
+
+.image-image img {
+  filter: blur(0px);
+  transition: filter 0.3s ease-in;
+  transform: scale(1.1);
+}
+
+.image-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-decoration: none;
+  z-index: 1;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity .5s;
+  background: rgba(90,0,10,0.4);
+  color: white;
+  
+  /* position the text in t’ middle*/
   display: flex;
-   flex-wrap: wrap;
-   padding: 0 4px;
+  align-items: center;
+  justify-content: center;
 }
 
-.column {
-   flex: 33%;
-   max-width: 33%;
-   padding: 0 4px;
-   border: 1px solid #ccc;
+.image-pic:hover .location-title {
+  opacity: 1;
 }
 
-.column:hover {
-  border: 1px solid #777;
-}
-
-.column img {
-   margin-top: 0px;
-   width: 100%;
-   padding: 0px;
+.image-pic:hover .location-image img {
+  filter: blur(2px);
 }
 
 @media screen and (max-width: 800px) {
-   .column {
+   . {
       flex: 50%;
       max-width: 50%;
    }
 }
 
 @media screen and (max-width: 600px) {
-   .column {
+   . {
       flex: 100%;
       max-width: 100%;
    }
 }
 
-.overlay { 
-    position: absolute; 
-    transition: all 0.3s ease; 
-    opacity: 0; 
-    background-color: #9bcd9b;  
-} 
-          
-.column:hover .overlay { 
-    opacity: 1; 
-} 
-          
-.overlayFade { 
-    background-color: #9bcd9b; 
-    height: 100%; 
-    width: 33%; 
-} 
 
 </style>
 </head>
@@ -68,15 +90,18 @@
 
 <br><br>
 
-<div>
-  <ul class="row">
-    <% @pictures.each do |img| %>
-        <div class="column">
-            <img src="<%= (url_for(img.image)) %>">
-            <div class="overlay overlayFade"></div> 
-        </div>
-    <% end %>
-  </ul>
+
+<div class="grid-container">
+    <article class="image-pic">
+        <% @pictures.each do |img| %>
+            <a class="image-title" href="#">San Francisco</a>
+            <div class="image-image">
+                <a href="#">
+                    <img src="<%= (url_for(img.image)) %>">
+                </a>
+            </div>
+        <% end %>
+    </article>
 </div>
 
 </body>
