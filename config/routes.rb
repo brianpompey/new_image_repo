@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/new'
+  get 'users/create'
   root 'pictures#index'
   get 'pictures/show'
   get 'pictures/create'
