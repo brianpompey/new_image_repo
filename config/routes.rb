@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'users/create'
   root 'pictures#index'
   get 'pictures/show'
+  get 'pictures/new'
   get 'pictures/create'
   get 'pictures/destroy'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

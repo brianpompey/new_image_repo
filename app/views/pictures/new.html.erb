@@ -1,0 +1,6 @@
+<%= form_with model: @picture, method: "post" do |f| %>
+    <%= f.text_field :title, placeholder: 'Enter image title here' %>
+    <%= f.text_field :description, placeholder: 'Enter image description here' %>
+    <%= f.file_field :image %>
+    <%= f.submit "Post" %>
+<% end %>
