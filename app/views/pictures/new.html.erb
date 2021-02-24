@@ -1,0 +1,61 @@
+/* hover styles */
+.image-pic {
+  position: relative;
+}
+
+.image-image {
+  line-height: 0;
+  overflow: hidden;
+}
+
+.image-image img {
+  filter: blur(0px);
+  transition: filter 0.3s ease-in;
+  transform: scale(1.1);
+}
+
+.image-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-decoration: none;
+  z-index: 1;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity .5s;
+  background: rgba(90,0,10,0.4);
+  color: white;
+  
+  /* position the text in t’ middle*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-pic:hover .location-title {
+  opacity: 1;
+}
+
+.image-pic:hover .location-image img {
+  filter: blur(2px);
+}
+
+
+<div class="grid-container">
+    <article class="image-pic">
+        <% @pictures.each_slice(3) do |pics| %>
+            <% pics.each_with_index do |img, index| %>
+                <div class="grid-<%= index + 1%>">
+            <!--<a class="image-title" href="#">San Francisco</a>
+            <div class="image-image">-->
+                    <a href="#">
+                        <img src="<%= (url_for(img.image)) %>">
+                    </a>
+                </div>
+            <% end %>         
+        <% end %>
+    </article>
+</div>

@@ -2,27 +2,63 @@
 <html>
 <head>
 <style>
-
-body {
-  padding: 20px;
-  font-family: sans-serif;
-  background: #f2f2f2;
-}
-img {
-  width: 33%; /* need to overwrite inline dimensions */
-  height: auto;
-}
-h1 {
-  margin-bottom: .5em;
-}
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+* {
+  box-sizing: border-box;
 }
 
+.row {
+  display: flex;
+   flex-wrap: wrap;
+   padding: 0 4px;
+}
 
+.column {
+   flex: 33%;
+   max-width: 33%;
+   padding: 0 4px;
+   border: 1px solid #ccc;
+}
 
+.column:hover {
+  border: 1px solid #777;
+}
 
+.column img {
+   margin-top: 0px;
+   width: 100%;
+   padding: 0px;
+}
+
+@media screen and (max-width: 800px) {
+   .column {
+      flex: 50%;
+      max-width: 50%;
+   }
+}
+
+@media screen and (max-width: 600px) {
+   .column {
+      flex: 100%;
+      max-width: 100%;
+   }
+}
+
+.overlay { 
+    position: absolute; 
+    transition: all 0.3s ease; 
+    opacity: 0; 
+    background-color: #9bcd9b; 
+    height: 100%; 
+    width: 100%;  
+} 
+          
+.column:hover .overlay { 
+    opacity: 1; 
+} 
+          
+.overlayFade { 
+    background-color: #9bcd9b; 
+} 
 
 </style>
 </head>
@@ -32,21 +68,15 @@ h1 {
 
 <br><br>
 
-
-<div class="grid-container">
-    <article class="image-pic">
-        <% @pictures.each_slice(3) do |pics| %>
-            <% pics.each_with_index do |img, index| %>
-                <div class="grid-<%= index + 1%>">
-            <!--<a class="image-title" href="#">San Francisco</a>
-            <div class="image-image">-->
-                    <a href="#">
-                        <img src="<%= (url_for(img.image)) %>">
-                    </a>
-                </div>
-            <% end %>         
-        <% end %>
-    </article>
+<div>
+  <ul class="row">
+    <% @pictures.each do |img| %>
+        <div class="column">
+            <img src="<%= (url_for(img.image)) %>">
+            <div class="overlay overlayFade"></div> 
+        </div>
+    <% end %>
+  </ul>
 </div>
 
 </body>
